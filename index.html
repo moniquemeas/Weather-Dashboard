@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Weather</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="./assets/css/style.css">
+
+<body>
+<header class="jumbotron text-center bg-info">
+    <h1>Weather Dashboard</h1>
+</header>
+<main>
+    <div class="d-flex">
+    <div class="inputContainer p-3">
+        <h1>Search for a City:</h1>
+        <form class="form-group">
+            <input type="text" Id="searchCity" class="form-control" placeholder="City Name">
+            <button id="cityInput" type = "submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <div class="outPut p-3">
+        <div id="cityContainer">
+            <div class="d-flex justify-content-between">
+            <h1 class="city"></h1>
+            <h2 class="date"></h2>
+            <img src="" alt="" class="icon" />
+            </div>
+            <p class="temp"></p>
+            <p class="wind"></p>
+            <p class="humidity"></p>
+            <div class="d-flex" id="uvCode">
+            <p class="uv"></p><span id="uVvalue"></span>
+    
+            </div>
+
+        </div>
+        <h2 Id="fiveDayCast"></h2>
+        <div class="d-flex p-3 text-black justify-content-between">
+            <div class="p-2" id="firstDay">
+            <h4 class="firstDate"></h4>
+            <img src="" alt="" class="firstIcon iconSize" />
+            <p class="firstTemp"></p>
+            <p class="firstWind"></p>
+            <p class="firstHumidity"></p>
+            </div>
+            <div class=" p-2" id="secondDay">
+                <h4 class="secondDate"></h4>
+                <img src="" alt="" class="secondIcon iconSize" />
+                <p class="secondTemp"></p>
+                <p class="secondWind"></p>
+                <p class="secondHumidity"></p>
+            </div>
+            <div class="p-2" id="thirdDay">
+                <h4 class="thirdDate"></h4>
+                <img src="" alt="" class="thirdIcon iconSize" />
+                <p class="thirdTemp"></p>
+                <p class="thirdWind"></p>
+                <p class="thirdHumidity"></p>
+            </div>
+            <div class="p-2" id="fourthDay">
+                <h4 class="fourthDate"></h4>
+                <img src="" alt="" class="fourthIcon iconSize" />
+                <p class="fourthTemp"></p>
+                <p class="fourthWind"></p>
+                <p class="fourthHumidity"></p>
+                
+            </div>
+            <div class="p-2" id="fifthDay">
+                <h4 class="fifthDate"></h4>
+                <img src="" alt="" class="fifthIcon iconSize" />
+                <p class="fifthTemp"></p>
+                <p class="fifthWind"></p>
+                <p class="fifthHumidity"></p>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+</main>
+<script src="./assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+.btn{
+    width: 100%;
+    margin-top: 5px;
+    
+    
+}
+.trackBtn{
+    width: 100%;
+    margin-top: 5px;
+    height: 40px;
+    border-radius: 5px;
+    border: 0;
+    background-color: rgb(185, 175, 175);
+
+}
+.outPut {
+    width: 150%;
+    
+}
+.outputContainer{
+    border: 2px solid darkblue;
+    border-radius: 15px;
+    padding: 10px;
+}
+.inputContainer{
+    width: 45%;
+    margin-left: 0;
+
+}
+.iconSize{
+    width: 25%;
+}
+.favorableUv{
+    background-color: green;
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    margin-left: 5px;
+}
+.moderateUv{
+    
+    background-color: rgb(226, 230, 22);
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    margin-left: 5px;
+}
+.serverUv{
+    background-color: rgb(231, 40, 15);
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    margin-left: 5px;
+}
+.forecastBg{
+    margin: 5px;
+    width: 100%;
+    background-color: lightskyblue;
+}
