@@ -75,15 +75,18 @@ weatherHist.addEventListener("click", function(){
     
     if (uvIndex < 3){
       uvStatus.innerText = uvIndex;
-      uvStatus.classList.add("favorableUv");
-    } else if (uvIndex > 3 && uvIndex < 8) {
+      uvStatus.classList = ["favorableUv"]
+    } else {
+      if (uvIndex > 3 && uvIndex < 8) {
       uvStatus.innerText = uvIndex;
-    uvStatus.classList.add("moderateUv");
+    //uvStatus.classList.add("moderateUv");
+    uvStatus.classList = ["moderateUv"]
     } else if (uvIndex >= 8) {
       uvStatus.innerText = uvIndex;
-    uvStatus.classList.add("serverUv");
+    //uvStatus.classList.add("servereUv");
+    uvStatus.classList = ["servereUv"]
     }
-
+    }
 
     // assigned data to forecast element
     //First forecast
