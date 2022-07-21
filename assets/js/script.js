@@ -14,14 +14,7 @@ var submitHandler = function(e){
   var cityName = cityEl.value;
   getWeather(cityName)
 
-  //applied class to element.
   outputHeader.classList.add("outputContainer");
-  document.getElementById("firstDay").classList.add("forecastBg");
-  document.getElementById("secondDay").classList.add("forecastBg");
-  document.getElementById("thirdDay").classList.add("forecastBg");
-  document.getElementById("fourthDay").classList.add("forecastBg");
-  document.getElementById("fifthDay").classList.add("forecastBg");
-
 // applied 5 day forecast text
 
 fiveDayForecast.innerText = "5-Day Forecast"
@@ -36,19 +29,18 @@ weatherHist.addEventListener("click", function(){
   //pull data from local storage
   JSON.parse(localStorage.getItem(getWeather(cityName)));
 })
-
-
 }
 
-
-  getWeather =  function(city){
+getWeather =  function(city){
     //fetch API 
     fetch(
       "https://api.weatherapi.com/v1/forecast.json?key=850a623db80245b3bf1224608221507&q="+ city +"&days=6&aqi=no&alerts=no"
     )
     .then((response) => response.json())
     .then((data) => this.displayWeather(data))
-  },
+    .catch(error => alert("Please enter the city name."))
+    
+  }
 
   displayWeather = function(data){
     
@@ -61,7 +53,7 @@ weatherHist.addEventListener("click", function(){
     var currentHumidity = document.querySelector(".humidity");
     var currentUv = document.querySelector(".uv");
     var uvIndex = data.current.uv;
-
+    
     //assigned current data to element
     currentLocation.innerText = data.location.name;
     currentDate.innerText = data.location.localtime;
@@ -75,66 +67,45 @@ weatherHist.addEventListener("click", function(){
     
     if (uvIndex < 3){
       uvStatus.innerText = uvIndex;
+
+      // assigned color green to uvIndex
       uvStatus.classList = ["favorableUv"]
-    } else {
-      if (uvIndex > 3 && uvIndex < 8) {
+
+    } else if (uvIndex > 3 && uvIndex < 8) {
       uvStatus.innerText = uvIndex;
-    //uvStatus.classList.add("moderateUv");
+
+    // assigned color yellow to uvIndex
     uvStatus.classList = ["moderateUv"]
     } else if (uvIndex >= 8) {
       uvStatus.innerText = uvIndex;
-    //uvStatus.classList.add("servereUv");
+      
+    // assigned color red to uvIndex
     uvStatus.classList = ["servereUv"]
     }
-    }
 
-    // assigned data to forecast element
-    //First forecast
-    document.querySelector(".firstDate").innerText = data.forecast.forecastday[1].date;
-    document.querySelector(".firstTemp").innerText = "Temp: " + data.forecast.forecastday[1].day.avgtemp_f + " °F"
-    document.querySelector(".firstWind").innerText = "Wind: " + data.forecast.forecastday[1].day.avgvis_miles + " MPH"
-    document.querySelector(".firstHumidity").innerText = "Humidity: " + data.forecast.forecastday[1].day.avghumidity + "%";
-    document.querySelector(".firstIcon").src= data.forecast.forecastday[1].day.condition.icon;
+    //remove first array
 
-    //second forecast
-    document.querySelector(".secondDate").innerText = data.forecast.forecastday[2].date;
-    document.querySelector(".secondTemp").innerText = "Temp: " + data.forecast.forecastday[2].day.avgtemp_f + " °F";
-    document.querySelector(".secondIcon").src = data.forecast.forecastday[2].day.condition.icon;
-    document.querySelector(".secondWind").innerText = "Wind: " + data.forecast.forecastday[2].day.avgvis_miles + " MPH";
-    document.querySelector(".secondHumidity").innerText = "Humidity: " + data.forecast.forecastday[2].day.avghumidity + "%";
+    data.forecast.forecastday.shift()
+  
+    // assigned data to new Elements
+    var futureForecast = data.forecast.forecastday.map(forecastday => {
+      
+      return `<div class="forecastBg">
+      <p>${forecastday.date}</p>
+      <img src = ${forecastday.day.condition.icon} />
+      <p>Temp: ${forecastday.day.avgtemp_f} °F</p>
+      <p>Wind: ${forecastday.day.avgvis_miles} MPH</p>
+      <p>Humidity: ${forecastday.day.avghumidity}%</p>
+      </div>`
+    }).join('');
+    
+    console.log(futureForecast)
+    document.querySelector('#forecast').innerHTML = futureForecast
 
-    //third forecast
-    document.querySelector(".thirdDate").innerText = data.forecast.forecastday[3].date;
-    document.querySelector(".thirdTemp").innerText = "Temp: " + data.forecast.forecastday[3].day.avgtemp_f + " °F";
-    document.querySelector(".thirdIcon").src = data.forecast.forecastday[3].day.condition.icon;
-    document.querySelector(".thirdWind").innerText = "Wind: " + data.forecast.forecastday[3].day.avgvis_miles + " MPH";
-    document.querySelector(".thirdHumidity").innerText = "Humidity: " + data.forecast.forecastday[3].day.avghumidity + "%";
-
-    //fourth forecast
-    document.querySelector(".fourthDate").innerText = data.forecast.forecastday[4].date;
-    document.querySelector(".fourthTemp").innerText = "Temp: " + data.forecast.forecastday[4].day.avgtemp_f + " °F";
-    document.querySelector(".fourthIcon").src = data.forecast.forecastday[4].day.condition.icon;
-    document.querySelector(".fourthWind").innerText = "Wind: " + data.forecast.forecastday[4].day.avgvis_miles + " MPH";
-    document.querySelector(".fourthHumidity").innerText = "Humidity: " + data.forecast.forecastday[4].day.avghumidity + "%";
-
-    //fifth forecast
-    document.querySelector(".fifthDate").innerText = data.forecast.forecastday[5].date;
-    document.querySelector(".fifthTemp").innerText = "Temp: " + data.forecast.forecastday[5].day.avgtemp_f + " °F";
-    document.querySelector(".fifthIcon").src = data.forecast.forecastday[5].day.condition.icon;
-    document.querySelector(".fifthWind").innerText = "Wind: " + data.forecast.forecastday[5].day.avgvis_miles + " MPH";
-    document.querySelector(".fifthHumidity").innerText = "Humidity: " + data.forecast.forecastday[5].day.avghumidity + "%";
+  
 
   // save data to local storage
   localStorage.setItem("data", JSON.stringify(data));
   }
+
   InputBtn.addEventListener("click", submitHandler);
-
-
-    
-    
-
-
-
-        
-
-    
