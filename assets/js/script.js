@@ -78,7 +78,7 @@ getWeather =  function(city){
     uvStatus.classList = ["moderateUv"]
     } else if (uvIndex >= 8) {
       uvStatus.innerText = uvIndex;
-      
+
     // assigned color red to uvIndex
     uvStatus.classList = ["servereUv"]
     }
@@ -91,7 +91,7 @@ getWeather =  function(city){
     var futureForecast = data.forecast.forecastday.map(forecastday => {
       
       return `<div class="forecastBg">
-      <p>${forecastday.date}</p>
+      <h4>${forecastday.date}</h4>
       <img src = ${forecastday.day.condition.icon} />
       <p>Temp: ${forecastday.day.avgtemp_f} °F</p>
       <p>Wind: ${forecastday.day.avgvis_miles} MPH</p>
