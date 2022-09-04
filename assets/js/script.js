@@ -91,10 +91,10 @@ getWeather =  function(city){
     var futureForecast = data.forecast.forecastday.map(forecastday => {
       
       return `<div class="forecastBg">
-      <h4>${forecastday.date}</h4>
+      <h4 class="p-2">${forecastday.date}</h4>
       <img src = ${forecastday.day.condition.icon} />
       <p>Temp: ${forecastday.day.avgtemp_f} °F</p>
-      <p>Wind: ${forecastday.day.avgvis_miles} MPH</p>
+      <p >Wind: ${forecastday.day.avgvis_miles} MPH</p>
       <p>Humidity: ${forecastday.day.avghumidity}%</p>
       </div>`
     }).join('');
